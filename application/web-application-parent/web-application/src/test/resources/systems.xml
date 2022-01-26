@@ -1,0 +1,14 @@
+<dataset>
+    <ac_systems id="1"
+                unit_id="1"
+                next_maintainance="[now+8d]"
+                notifications="true"
+                customer_id="1"
+                job_key="cd6b5aaa-d64c-4ae5-9dfb-b7af6795e025" />
+    <ac_systems id="2"
+                unit_id="2"
+                next_maintainance="[now+10d]"
+                notifications="true"
+                customer_id="1"
+                job_key="5734a585-687a-4e15-ba25-6f265c443649" />
+</dataset>

@@ -1,0 +1,12 @@
+<dataset>
+    <ac_units id="1"
+              manufacturer="Test Systems Inc."
+              product_name="Product 001"
+              voltage="230"
+              current="30" />
+    <ac_units id="2"
+              manufacturer="Additional Systems Inc."
+              product_name="Product 002"
+              voltage="240"
+              current="20" />
+</dataset>

@@ -1,0 +1,99 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet author="zmd" id="1.0-1">
+        <createTable tableName="customers">
+            <column name="id" type="INTEGER" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="customers_pk" />
+            </column>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="last_name" type="VARCHAR(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="street_name" type="VARCHAR(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="house_number" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="zip_code" type="VARCHAR(10)">
+                <constraints nullable="false" />
+            </column>
+            <column name="city" type="VARCHAR(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="phone_number" type="VARCHAR(15)">
+                <constraints nullable="false" />
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="document_type" type="VARCHAR(10)">
+                <constraints nullable="false" />
+            </column>
+            <column name="document_id" type="VARCHAR(10)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="zmd" id="1.0-2">
+        <createTable tableName="ac_units">
+            <column name="id" type="INTEGER" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="ac_units_pk" />
+            </column>
+            <column name="manufacturer" type="VARCHAR(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="product_name" type="VARCHAR(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="voltage" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="current" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="zmd" id="1.0-3">
+        <createTable tableName="ac_systems">
+            <column name="id" type="INTEGER" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="ac_systems_pk" />
+            </column>
+            <column name="unit_id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="next_maintainance" type="DATETIME">
+                <constraints nullable="false" />
+            </column>
+            <column name="notifications" type="BOOLEAN" defaultValueBoolean="true" >
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="unit_id" baseTableName="ac_systems" constraintName="ac_systems_fk0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="ac_units" validate="true" />
+    </changeSet>
+
+    <changeSet author="zmd" id="1.0-4">
+        <createTable tableName="customers_ac_systems">
+            <column name="id" type="INTEGER" autoIncrement="true">
+                <constraints nullable="false" unique="true" primaryKey="true" primaryKeyName="customers_ac_systems_pk" />
+            </column>
+            <column name="customer_id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+            <column name="ac_system_id" type="INTEGER">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="customers_ac_systems" constraintName="customers_ac_systems_fk0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="customers" validate="true" />
+        <addForeignKeyConstraint baseColumnNames="ac_system_id" baseTableName="customers_ac_systems" constraintName="customers_ac_systems_fk1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="ac_systems" validate="true" />
+    </changeSet>
+
+</databaseChangeLog>

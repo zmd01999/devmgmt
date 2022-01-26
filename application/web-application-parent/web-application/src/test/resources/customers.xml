@@ -1,0 +1,24 @@
+<dataset>
+    <customers id="1"
+               first_name="John"
+               last_name="Smith"
+               street_name="Stratford Park"
+               house_number="3513"
+               zip_code="47805"
+               city="Terre Haute"
+               phone_number="+1-202-555-0183"
+               email="example1@example.com"
+               document_type="PASSPORT"
+               document_id="GDA7394612" />
+    <customers id="2"
+               first_name="Britney"
+               last_name="Sparkles"
+               street_name="Armbrester Drive"
+               house_number="1462"
+               zip_code="92614"
+               city="Irvine"
+               phone_number="+49-89-636-4801"
+               email="example2@example.com"
+               document_type="IDCARD"
+               document_id="ACU2345682" />
+</dataset>
