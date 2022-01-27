@@ -1,0 +1,60 @@
+package pl.piasta.acmanagement.dto.customers;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.w3c.dom.DocumentType;
+
+import javax.validation.constraints.*;
+import java.io.Serializable;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public class UpdateCustomerRequest implements Serializable {
+
+    @NotBlank
+    @Size(min = 2, max = 50)
+    private String firstName;
+
+    @NotBlank
+    @Size(min = 2, max = 50)
+    private String lastName;
+
+    @NotBlank
+    @Size(min = 2, max = 100)
+    private String streetName;
+
+    @NotBlank
+    @Pattern(regexp = "^[0-9a-zA-Z ./]*$")
+    @Size(max = 10)
+    private String houseNumber;
+
+    @NotBlank
+    @Pattern(regexp = "^[0-9 \\-]*$")
+    @Size(min = 2, max = 10)
+    private String zipCode;
+
+    @NotBlank
+    @Size(min = 2, max = 50)
+    private String city;
+
+    @NotBlank
+    @Pattern(regexp = "^\\+[-0-9]+$")
+    @Size(min = 7, max = 15)
+    private String phoneNumber;
+
+    @NotBlank
+    @Email
+    private String email;
+
+    @NotNull
+    private DocumentType documentType;
+
+    @NotBlank
+    @Pattern(regexp = "^[0-9A-Z ]*$")
+    @Size(min = 2, max = 10)
+    private String documentId;
+}
