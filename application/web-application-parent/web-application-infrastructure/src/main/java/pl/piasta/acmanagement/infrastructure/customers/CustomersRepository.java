@@ -1,4 +1,4 @@
-package pl.piasta.acmanagement.domain.customers;
+package pl.piasta.acmanagement.infrastructure.customers;
 
 import pl.piasta.acmanagement.domain.customers.model.Customer;
 

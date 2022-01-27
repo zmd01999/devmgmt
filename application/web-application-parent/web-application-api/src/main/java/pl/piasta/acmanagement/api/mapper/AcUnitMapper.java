@@ -3,9 +3,9 @@ package pl.piasta.acmanagement.api.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
-import pl.piasta.acmanagement.api.acunits.model.UpdateUnitRequest;
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
 import pl.piasta.acmanagement.dto.acunits.AcUnitResponse;
+import pl.piasta.acmanagement.dto.acunits.UpdateUnitRequest;
 
 import java.util.List;
 

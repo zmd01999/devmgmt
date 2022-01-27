@@ -3,8 +3,8 @@ package pl.piasta.acmanagement.infrastructure.security;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
-import pl.piasta.acmanagement.infrastructure.common.ResultCode;
-import pl.piasta.acmanagement.infrastructure.common.VResponse;
+import pl.piasta.acmanagement.api.common.ResultCode;
+import pl.piasta.acmanagement.api.common.VResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

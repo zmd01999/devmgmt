@@ -2,7 +2,7 @@ package pl.piasta.acmanagement.infrastructure.exception;
 
 
 import lombok.Getter;
-import pl.piasta.acmanagement.infrastructure.common.VResponse;
+import pl.piasta.acmanagement.api.common.VResponse;
 
 /**
  * @author zmd

@@ -3,7 +3,6 @@ package pl.piasta.acmanagement.infrastructure.customers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import pl.piasta.acmanagement.domain.customers.CustomersRepository;
 import pl.piasta.acmanagement.domain.customers.model.Customer;
 import pl.piasta.acmanagement.infrastructure.dao.CustomersDao;
 import pl.piasta.acmanagement.infrastructure.mapper.CustomersEntityMapper;

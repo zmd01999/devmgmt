@@ -1,4 +1,4 @@
-package pl.piasta.acmanagement.infrastructure.common;
+package pl.piasta.acmanagement.api.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;

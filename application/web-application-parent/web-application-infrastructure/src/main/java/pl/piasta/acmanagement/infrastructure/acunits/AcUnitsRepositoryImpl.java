@@ -3,7 +3,6 @@ package pl.piasta.acmanagement.infrastructure.acunits;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import pl.piasta.acmanagement.domain.acunits.AcUnitsRepository;
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
 import pl.piasta.acmanagement.infrastructure.dao.AcUnitsDao;
 import pl.piasta.acmanagement.infrastructure.mapper.AcUnitsEntityMapper;

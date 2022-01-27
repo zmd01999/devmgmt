@@ -1,4 +1,4 @@
-package pl.piasta.acmanagement.infrastructure.common;
+package pl.piasta.acmanagement.api.common;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;

@@ -1,4 +1,4 @@
-package pl.piasta.acmanagement.domain.acunits;
+package pl.piasta.acmanagement.infrastructure.acunits;
 
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
 

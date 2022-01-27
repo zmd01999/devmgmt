@@ -1,11 +1,14 @@
-package pl.piasta.acmanagement.domain.customers;
+package pl.piasta.acmanagement.infrastructure.service.lmpl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.piasta.acmanagement.api.misc.MyException;
+import pl.piasta.acmanagement.api.service.CustomersService;
+import pl.piasta.acmanagement.infrastructure.customers.CustomersRepository;
 import pl.piasta.acmanagement.domain.customers.model.Customer;
 import pl.piasta.acmanagement.domain.misc.ErrorCode;
-import pl.piasta.acmanagement.domain.misc.MyException;
+
 
 import java.util.List;
 

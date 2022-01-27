@@ -12,13 +12,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import pl.piasta.acmanagement.api.acunits.model.UpdateUnitRequest;
+
 import pl.piasta.acmanagement.api.mapper.AcUnitMapper;
 import pl.piasta.acmanagement.api.misc.JsonPatchHandler;
 import pl.piasta.acmanagement.api.misc.ResourceCreatedResponse;
-import pl.piasta.acmanagement.domain.acunits.AcUnitsService;
+
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
 import pl.piasta.acmanagement.dto.acunits.AcUnitResponse;
+import pl.piasta.acmanagement.dto.acunits.UpdateUnitRequest;
+import pl.piasta.acmanagement.api.service.AcUnitsService;
 
 import javax.json.JsonPatch;
 import javax.validation.Valid;

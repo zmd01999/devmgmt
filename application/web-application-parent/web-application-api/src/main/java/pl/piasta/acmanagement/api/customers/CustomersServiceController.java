@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import pl.piasta.acmanagement.api.customers.model.UpdateCustomerRequest;
+
 import pl.piasta.acmanagement.api.mapper.CustomerMapper;
 import pl.piasta.acmanagement.api.misc.ResourceCreatedResponse;
-import pl.piasta.acmanagement.domain.customers.CustomersService;
+
 import pl.piasta.acmanagement.domain.customers.model.Customer;
 import pl.piasta.acmanagement.dto.customers.CustomerResponse;
+import pl.piasta.acmanagement.dto.customers.UpdateCustomerRequest;
+import pl.piasta.acmanagement.api.service.CustomersService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;

@@ -3,7 +3,6 @@ package pl.piasta.acmanagement.infrastructure.acsystems;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import pl.piasta.acmanagement.domain.acsystems.AcSystemsRepository;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystem;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystemFull;
 import pl.piasta.acmanagement.domain.acsystems.model.JobDetails;

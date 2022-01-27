@@ -1,9 +1,10 @@
 package pl.piasta.acmanagement.api.mapper;
 
 import org.mapstruct.Mapper;
-import pl.piasta.acmanagement.api.customers.model.UpdateCustomerRequest;
+
 import pl.piasta.acmanagement.domain.customers.model.Customer;
 import pl.piasta.acmanagement.dto.customers.CustomerResponse;
+import pl.piasta.acmanagement.dto.customers.UpdateCustomerRequest;
 
 import java.util.List;
 

@@ -51,6 +51,10 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
+        <dependency>
+            <groupId>pl.piasta.acmanagement</groupId>
+            <artifactId>web-application-api</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

@@ -1,6 +1,7 @@
-package pl.piasta.acmanagement.domain.misc;
+package pl.piasta.acmanagement.api.misc;
 
 import lombok.Getter;
+import pl.piasta.acmanagement.domain.misc.ErrorCode;
 
 @Getter
 public class MyException extends RuntimeException {

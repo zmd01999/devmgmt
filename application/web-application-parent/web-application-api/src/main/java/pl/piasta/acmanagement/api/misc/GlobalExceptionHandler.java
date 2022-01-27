@@ -14,7 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import pl.piasta.acmanagement.domain.misc.ErrorCode;
-import pl.piasta.acmanagement.domain.misc.MyException;
+
 
 import javax.json.JsonException;
 import javax.validation.ConstraintViolationException;

@@ -1,4 +1,4 @@
-package pl.piasta.acmanagement.infrastructure.common;
+package pl.piasta.acmanagement.api.common;
 
 /**
  * @author zmd

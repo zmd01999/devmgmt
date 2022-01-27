@@ -1,4 +1,4 @@
-package pl.piasta.acmanagement.domain.acsystems;
+package pl.piasta.acmanagement.infrastructure.acsystems;
 
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystem;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystemFull;
