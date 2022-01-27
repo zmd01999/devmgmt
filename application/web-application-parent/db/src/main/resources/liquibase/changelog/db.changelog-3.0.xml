@@ -5,16 +5,16 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 
     <changeSet author="zmd" id="3.0-1">
-        <dropForeignKeyConstraint baseTableName="ac_systems" constraintName="customers_ac_systems_fk0" />
-        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="ac_systems" constraintName="ac_systems_fk1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="customers" validate="true" />
+<!--        <dropForeignKeyConstraint baseTableName="ac_systems" constraintName="customers_ac_systems_fk0" />-->
+<!--        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="ac_systems" constraintName="ac_systems_fk1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="customers" validate="true" />-->
     </changeSet>
 
-    <changeSet author="zmd" id="3.0-2">
-         <addColumn schemaName="public" tableName="ac_systems">
-             <column name="job_key" type="VARCHAR(36)">
-                 <constraints nullable="false" />
-             </column>
-         </addColumn>
-    </changeSet>
+<!--    <changeSet author="zmd" id="3.0-2">-->
+<!--         <addColumn schemaName="public" tableName="ac_systems">-->
+<!--             <column name="job_key" type="VARCHAR(36)">-->
+<!--                 <constraints nullable="false" />-->
+<!--             </column>-->
+<!--         </addColumn>-->
+<!--    </changeSet>-->
 
 </databaseChangeLog>
