@@ -7,8 +7,9 @@ import io.restassured.http.ContentType;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.Test;
 import org.springframework.transaction.annotation.Transactional;
-import pl.piasta.acmanagement.api.acunits.model.UpdateUnitRequest;
+
 import pl.piasta.acmanagement.application.BaseIT;
+import pl.piasta.acmanagement.dto.acunits.UpdateUnitRequest;
 
 import javax.json.Json;
 import javax.json.JsonPatch;

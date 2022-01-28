@@ -7,9 +7,10 @@ import io.restassured.http.ContentType;
 import org.assertj.db.type.Table;
 import org.junit.jupiter.api.Test;
 import org.springframework.transaction.annotation.Transactional;
-import pl.piasta.acmanagement.api.customers.model.UpdateCustomerRequest;
+
 import pl.piasta.acmanagement.application.BaseIT;
 import pl.piasta.acmanagement.domain.customers.model.DocumentType;
+import pl.piasta.acmanagement.dto.customers.UpdateCustomerRequest;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.db.api.Assertions.assertThat;

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.w3c.dom.DocumentType;
+import pl.piasta.acmanagement.domain.customers.model.DocumentType;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;

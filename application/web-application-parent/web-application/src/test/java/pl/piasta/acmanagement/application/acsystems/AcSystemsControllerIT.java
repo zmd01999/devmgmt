@@ -8,8 +8,9 @@ import org.assertj.db.type.DateTimeValue;
 import org.assertj.db.type.Table;
 import org.assertj.db.type.TimeValue;
 import org.junit.jupiter.api.Test;
-import pl.piasta.acmanagement.api.acsystems.model.AddSystemRequest;
+
 import pl.piasta.acmanagement.application.BaseIT;
+import pl.piasta.acmanagement.dto.acsystems.AddSystemRequest;
 
 import java.time.LocalDateTime;
 

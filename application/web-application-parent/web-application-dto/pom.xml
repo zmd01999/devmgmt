@@ -29,6 +29,10 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
+        <dependency>
+            <groupId>pl.piasta.acmanagement</groupId>
+            <artifactId>web-application-domain</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
