@@ -1,15 +1,11 @@
 package pl.piasta.acmanagement.infrastructure.admin;
 
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 import pl.piasta.acmanagement.domain.admin.model.Role;
 import pl.piasta.acmanagement.domain.admin.model.UserDetail;
 
-/**
- * @author JoeTao
- * createAt: 2018/9/17
- */
-@Repository
+
+
 public interface AuthRepository {
     /**
      * 根据用户名查找用户
@@ -30,7 +26,7 @@ public interface AuthRepository {
      * @param roleId
      * @return
      */
-    int insertRole(@Param("userId") long userId, @Param("roleId") long roleId);
+    void insertRole(@Param("userId") long userId, @Param("roleId") long roleId);
 
     /**
      * 根据角色id查找角色

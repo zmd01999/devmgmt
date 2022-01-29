@@ -4,32 +4,41 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.piasta.acmanagement.domain.admin.model.Role;
 import pl.piasta.acmanagement.domain.admin.model.UserDetail;
+import pl.piasta.acmanagement.infrastructure.dao.SysRoleDao;
+import pl.piasta.acmanagement.infrastructure.dao.SysUserDao;
+import pl.piasta.acmanagement.infrastructure.dao.SysUserRoleDao;
 
 @Repository
 @RequiredArgsConstructor
 public class AuthRepositorylmpl implements AuthRepository {
+
+    private final SysRoleDao sysRoleDao;
+    private final SysUserDao sysUserDao;
+    private final SysUserRoleDao sysUserRoleDao;
+
     @Override
     public UserDetail findByUsername(String name) {
-        return null;
+        return sysUserDao.findByUserName(name);
     }
 
     @Override
     public void insert(UserDetail userDetail) {
-
+        sysUserDao.insertUser(userDetail.getUsername(), userDetail.getPassword());
     }
 
     @Override
-    public int insertRole(long userId, long roleId) {
-        return 0;
+    public void insertRole(long userId, long roleId) {
+         sysUserRoleDao.insertUserRole(userId, roleId);
     }
 
     @Override
     public Role findRoleById(long roleId) {
-        return null;
+            return sysRoleDao.findById(roleId, Role.class).get();
     }
 
     @Override
     public Role findRoleByUserId(long userId) {
-        return null;
+        String roleId = sysUserRoleDao.findById(userId).get().getRoleId();
+        return sysRoleDao.findById(Long.parseLong(roleId), Role.class).get();
     }
 }
