@@ -18,7 +18,8 @@ public class AuthRepositorylmpl implements AuthRepository {
 
     @Override
     public UserDetail findByUsername(String name) {
-        return sysUserDao.findByUserName(name);
+
+        return sysUserDao.findByUserName(name, UserDetail.class).get();
     }
 
     @Override
