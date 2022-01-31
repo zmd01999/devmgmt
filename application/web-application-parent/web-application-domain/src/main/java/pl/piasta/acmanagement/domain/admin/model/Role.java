@@ -1,8 +1,6 @@
 package pl.piasta.acmanagement.domain.admin.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Value;
+import lombok.*;
 
 /**
  * @author : zmd
@@ -10,6 +8,8 @@ import lombok.Value;
  */
 @Data
 @Builder
+@RequiredArgsConstructor
+@Getter
 @Value
 public class Role {
     private Long id;

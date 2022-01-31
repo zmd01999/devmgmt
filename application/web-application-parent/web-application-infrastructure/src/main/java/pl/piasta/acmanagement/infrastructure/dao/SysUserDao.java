@@ -9,7 +9,7 @@ import pl.piasta.acmanagement.infrastructure.model.SysUserEntity;
 import java.util.Optional;
 
 public interface SysUserDao extends JpaRepository<SysUserEntity, Long> {
-    <T> Optional<T> findByUserName(String userName, Class<T> type);
+    SysUserEntity findByUserName(String userName);
 
     @Query(value = "insert into sys_user (name, password) VALUES (?1, ?2)", nativeQuery = true)
     void insertUser(String userName, String password);

@@ -7,6 +7,5 @@ import pl.piasta.acmanagement.infrastructure.model.SysRoleEntity;
 import java.util.Optional;
 
 public interface SysRoleDao extends JpaRepository<SysRoleEntity, Long> {
-    <T> Optional<T> findById(Long id, Class<T> type);
 
 }

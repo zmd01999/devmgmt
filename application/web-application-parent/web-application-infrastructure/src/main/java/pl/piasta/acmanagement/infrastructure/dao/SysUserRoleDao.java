@@ -10,4 +10,6 @@ public interface SysUserRoleDao extends JpaRepository<SysUserRoleEntity, Long> {
     @Query(value = "insert into sys_user_role (user_id, role_id) VALUES (?1, ?2)", nativeQuery = true)
     void insertUserRole(Long userId, Long roleId);
 
+    SysUserRoleEntity findByUserId(Long userId);
+
 }

@@ -12,7 +12,7 @@ public interface AuthRepository {
      * @param name
      * @return
      */
-    UserDetail findByUsername(@Param("name") String name);
+    UserDetail findByUsername(String name);
 
     /**
      * 创建新用户
@@ -26,19 +26,19 @@ public interface AuthRepository {
      * @param roleId
      * @return
      */
-    void insertRole(@Param("userId") long userId, @Param("roleId") long roleId);
+    void insertRole(long userId, long roleId);
 
     /**
      * 根据角色id查找角色
      * @param roleId
      * @return
      */
-    Role findRoleById(@Param("roleId") long roleId);
+    Role findRoleById(long roleId);
 
     /**
      * 根据用户id查找该用户角色
      * @param userId
      * @return
      */
-    Role findRoleByUserId(@Param("userId") long userId);
+    Role findRoleByUserId(long userId);
 }

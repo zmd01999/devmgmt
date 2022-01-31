@@ -7,6 +7,8 @@ import pl.piasta.acmanagement.domain.admin.model.UserDetail;
 import pl.piasta.acmanagement.infrastructure.dao.SysRoleDao;
 import pl.piasta.acmanagement.infrastructure.dao.SysUserDao;
 import pl.piasta.acmanagement.infrastructure.dao.SysUserRoleDao;
+import pl.piasta.acmanagement.infrastructure.mapper.AuthEntityMapper;
+import pl.piasta.acmanagement.infrastructure.model.SysUserEntity;
 
 @Repository
 @RequiredArgsConstructor
@@ -15,11 +17,14 @@ public class AuthRepositorylmpl implements AuthRepository {
     private final SysRoleDao sysRoleDao;
     private final SysUserDao sysUserDao;
     private final SysUserRoleDao sysUserRoleDao;
+    private AuthEntityMapper mapper;
 
     @Override
     public UserDetail findByUsername(String name) {
-
-        return sysUserDao.findByUserName(name, UserDetail.class).get();
+        SysUserEntity sysUserEntity = sysUserDao.findByUserName(name);
+        Long roleId = sysUserRoleDao.findByUserId(sysUserEntity.getId()).getRoleId();
+        Role role = mapper.mapToRole(sysRoleDao.findById(roleId)).orElse(null);
+        return mapper.mapToUserDetail(sysUserEntity, role);
     }
 
     @Override
@@ -34,12 +39,12 @@ public class AuthRepositorylmpl implements AuthRepository {
 
     @Override
     public Role findRoleById(long roleId) {
-            return sysRoleDao.findById(roleId, Role.class).get();
+            return mapper.mapToRole(sysRoleDao.findById(roleId)).orElse(null);
     }
 
     @Override
     public Role findRoleByUserId(long userId) {
-        String roleId = sysUserRoleDao.findById(userId).get().getRoleId();
-        return sysRoleDao.findById(Long.parseLong(roleId), Role.class).get();
+        Long roleId = sysUserRoleDao.findById(userId).get().getRoleId();
+        return mapper.mapToRole(sysRoleDao.findById(roleId)).orElse(null);
     }
 }
