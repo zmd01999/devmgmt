@@ -9,8 +9,10 @@ import org.assertj.db.type.Table;
 import org.assertj.db.type.TimeValue;
 import org.junit.jupiter.api.Test;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pl.piasta.acmanagement.application.BaseIT;
 import pl.piasta.acmanagement.dto.acsystems.AddSystemRequest;
+import pl.piasta.acmanagement.infrastructure.model.SysRoleEntity;
 
 import java.time.LocalDateTime;
 

@@ -27,8 +27,8 @@ import pl.piasta.acmanagement.infrastructure.security.JwtUtils;
 import java.util.Date;
 
 /**
- * @author: JoeTao
- * createAt: 2018/9/17
+ * @author: zmd
+ * createAt: 2022/1/29
  */
 @Service
 public class AuthServiceImpl implements AuthService {

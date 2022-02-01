@@ -1,5 +1,6 @@
 package pl.piasta.acmanagement.infrastructure.mapper;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
 import pl.piasta.acmanagement.domain.admin.model.Role;
@@ -11,6 +12,7 @@ import pl.piasta.acmanagement.infrastructure.model.SysUserEntity;
 import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
 public class AuthEntityMapper {
 
     public Optional<Role> mapToRole( Optional<SysRoleEntity> sysRoleEntity){

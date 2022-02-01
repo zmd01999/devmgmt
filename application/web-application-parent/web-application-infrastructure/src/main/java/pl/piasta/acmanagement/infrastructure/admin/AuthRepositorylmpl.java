@@ -17,7 +17,7 @@ public class AuthRepositorylmpl implements AuthRepository {
     private final SysRoleDao sysRoleDao;
     private final SysUserDao sysUserDao;
     private final SysUserRoleDao sysUserRoleDao;
-    private AuthEntityMapper mapper;
+    private final AuthEntityMapper mapper;
 
     @Override
     public UserDetail findByUsername(String name) {
