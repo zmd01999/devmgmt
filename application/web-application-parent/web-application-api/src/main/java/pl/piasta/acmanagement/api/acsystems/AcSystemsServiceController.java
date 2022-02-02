@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import pl.piasta.acmanagement.api.common.VResponse;
 import pl.piasta.acmanagement.api.mapper.AcSystemMapper;
 import pl.piasta.acmanagement.api.misc.ResourceCreatedResponse;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystem;
@@ -43,22 +44,22 @@ public class AcSystemsServiceController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResourceCreatedResponse addSystem(@RequestBody @Valid AddSystemRequest request) {
+    public VResponse<Long> addSystem(@RequestBody @Valid AddSystemRequest request) {
         AcSystem system = mapper.mapToAcSystem(request);
         Long id = service.addSystem(system);
-        return new ResourceCreatedResponse(id);
+        return VResponse.success(id);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public AcSystemFullResponse getSystem(@PathVariable @Min(1) Long id) {
+    public VResponse<AcSystemFullResponse> getSystem(@PathVariable @Min(1) Long id) {
         AcSystemFull system = service.getSystemById(id);
-        return mapper.mapToFullResponse(system);
+        return VResponse.success(mapper.mapToFullResponse(system));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<AcSystemResponse> getAllSystems() {
+    public VResponse<List<AcSystemResponse>> getAllSystems() {
         List<AcSystem> systemList = service.getAllSystems();
-        return mapper.mapToResponseList(systemList);
+        return VResponse.success(mapper.mapToResponseList(systemList));
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

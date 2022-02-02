@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import pl.piasta.acmanagement.api.common.VResponse;
 import pl.piasta.acmanagement.api.mapper.CustomerMapper;
 import pl.piasta.acmanagement.api.misc.ResourceCreatedResponse;
 
@@ -36,10 +37,10 @@ public class CustomersServiceController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResourceCreatedResponse addCustomer(@RequestBody @Valid UpdateCustomerRequest request) {
+    public VResponse<Long> addCustomer(@RequestBody @Valid UpdateCustomerRequest request) {
         Customer customer = mapper.mapToCustomer(request);
         Long id = service.addCustomer(customer);
-        return new ResourceCreatedResponse(id);
+        return VResponse.success(id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -50,14 +51,14 @@ public class CustomersServiceController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public CustomerResponse getCustomer(@PathVariable @Min(1) Long id) {
+    public VResponse<CustomerResponse> getCustomer(@PathVariable @Min(1) Long id) {
         Customer customer = service.getCustomerById(id);
-        return mapper.mapToResponse(customer);
+        return VResponse.success(mapper.mapToResponse(customer));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CustomerResponse> getAllCustomers() {
+    public VResponse<List<CustomerResponse>> getAllCustomers() {
         List<Customer> customerList = service.getAllCustomers();
-        return mapper.mapToResponseList(customerList);
+        return VResponse.success(mapper.mapToResponseList(customerList));
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import pl.piasta.acmanagement.api.common.VResponse;
 import pl.piasta.acmanagement.api.mapper.AcUnitMapper;
 import pl.piasta.acmanagement.api.misc.JsonPatchHandler;
 import pl.piasta.acmanagement.api.misc.ResourceCreatedResponse;
@@ -39,10 +40,10 @@ public class AcUnitsServiceController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResourceCreatedResponse addUnit(@RequestBody @Valid UpdateUnitRequest request) {
+    public VResponse<Long> addUnit(@RequestBody @Valid UpdateUnitRequest request) {
         AcUnit unit = mapper.mapToAcUnit(request);
         Long id = service.updateUnit(unit);
-        return new ResourceCreatedResponse(id);
+        return VResponse.success(id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -57,14 +58,14 @@ public class AcUnitsServiceController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public AcUnitResponse getUnit(@PathVariable @Min(1) Long id) {
+    public VResponse<AcUnitResponse> getUnit(@PathVariable @Min(1) Long id) {
         AcUnit unit = service.getUnitById(id);
-        return mapper.mapToResponse(unit);
+        return VResponse.success(mapper.mapToResponse(unit));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<AcUnitResponse> getAllUnits() {
+    public VResponse<List<AcUnitResponse>> getAllUnits() {
         List<AcUnit> unitList = service.getAllUnits();
-        return mapper.mapToResponseList(unitList);
+        return VResponse.success(mapper.mapToResponseList(unitList));
     }
 }
