@@ -1,6 +1,7 @@
 package pl.piasta.acmanagement.api.acunits;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.piasta.acmanagement.api.common.VResponse;
 import pl.piasta.acmanagement.api.mapper.AcUnitMapper;
 import pl.piasta.acmanagement.api.misc.JsonPatchHandler;
-import pl.piasta.acmanagement.api.misc.ResourceCreatedResponse;
 
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
 import pl.piasta.acmanagement.dto.acunits.AcUnitResponse;
@@ -37,7 +37,6 @@ public class AcUnitsServiceController {
     private final AcUnitsService service;
     private final AcUnitMapper mapper;
     private final JsonPatchHandler jsonPatchHandler;
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public VResponse<Long> addUnit(@RequestBody @Valid UpdateUnitRequest request) {

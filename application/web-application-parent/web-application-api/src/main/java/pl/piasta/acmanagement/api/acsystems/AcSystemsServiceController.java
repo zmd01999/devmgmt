@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.piasta.acmanagement.api.common.VResponse;
 import pl.piasta.acmanagement.api.mapper.AcSystemMapper;
 import pl.piasta.acmanagement.api.misc.ResourceCreatedResponse;
+import pl.piasta.acmanagement.domain.acsystems.model.AcDetail;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystem;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystemFull;
 import pl.piasta.acmanagement.dto.acsystems.AcSystemFullResponse;

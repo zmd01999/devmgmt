@@ -1,9 +1,13 @@
 package pl.piasta.acmanagement.infrastructure.service.lmpl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.piasta.acmanagement.api.service.AcSystemsService;
+import pl.piasta.acmanagement.domain.acsystems.model.AcDetail;
+import pl.piasta.acmanagement.infrastructure.acsystems.AcDetailRepository;
 import pl.piasta.acmanagement.infrastructure.acsystems.AcSystemsRepository;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystem;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystemFull;
@@ -17,7 +21,9 @@ import pl.piasta.acmanagement.domain.misc.ErrorCode;
 
 
 import pl.piasta.acmanagement.api.misc.MyException;
+import pl.piasta.acmanagement.infrastructure.model.AcDetailEntity;
 
+import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,6 +35,9 @@ public class AcSystemsServiceImpl implements AcSystemsService {
     private final AcUnitsRepository acUnitsRepository;
     private final CustomersRepository customersRepository;
     private final EmailScheduler emailScheduler;
+
+    @Resource
+    private AcDetailRepository acDetailRepository;
 
     @Override
     @Transactional
@@ -44,7 +53,11 @@ public class AcSystemsServiceImpl implements AcSystemsService {
         if (system.isNotified()) {
             emailScheduler.schedule(jobKey, system.getNextMaintainance().minusDays(7));
         }
-        return acSystemsRepository.add(system, jobKey);
+        //初始化空调状态
+        Long id =  acSystemsRepository.add(system, jobKey);
+        AcDetail acDetail = new AcDetail(id);
+        acDetailRepository.add(acDetail);
+        return id;
     }
 
     @Override
