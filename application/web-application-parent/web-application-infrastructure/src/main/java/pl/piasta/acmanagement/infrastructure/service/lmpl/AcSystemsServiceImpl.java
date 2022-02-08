@@ -11,8 +11,8 @@ import pl.piasta.acmanagement.infrastructure.acsystems.AcSystemsRepository;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystem;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystemFull;
 import pl.piasta.acmanagement.domain.acsystems.model.JobDetails;
-import pl.piasta.acmanagement.domain.acsystems.quartz.EmailDetails;
-import pl.piasta.acmanagement.domain.acsystems.quartz.EmailScheduler;
+import pl.piasta.acmanagement.infrastructure.quartz.EmailDetails;
+import pl.piasta.acmanagement.infrastructure.quartz.EmailScheduler;
 import pl.piasta.acmanagement.infrastructure.acunits.AcUnitsRepository;
 import pl.piasta.acmanagement.infrastructure.customers.CustomersRepository;
 import pl.piasta.acmanagement.domain.customers.model.Customer;
@@ -20,7 +20,7 @@ import pl.piasta.acmanagement.domain.misc.ErrorCode;
 
 
 import pl.piasta.acmanagement.api.misc.MyException;
-import pl.piasta.acmanagement.infrastructure.model.AcDetailEntity;
+import pl.piasta.acmanagement.infrastructure.redis.RedisUtil;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
@@ -34,6 +34,8 @@ public class AcSystemsServiceImpl implements AcSystemsService {
     private final AcUnitsRepository acUnitsRepository;
     private final CustomersRepository customersRepository;
     private final EmailScheduler emailScheduler;
+    private final RedisUtil redisUtil;
+    private static final String CACHE_DETAIL = "detail_";
 
     @Resource
     private AcDetailRepository acDetailRepository;
@@ -55,7 +57,10 @@ public class AcSystemsServiceImpl implements AcSystemsService {
         //初始化空调状态
         Long id =  acSystemsRepository.add(system, jobKey);
         AcDetail acDetail = new AcDetail(id);
-        acDetailRepository.add(acDetail);
+        Long detailId = acDetailRepository.add(acDetail);
+        String key = CACHE_DETAIL + detailId;
+        //缓存初始化
+        redisUtil.setObject(key, acDetail);
         return id;
     }
 
@@ -92,6 +97,32 @@ public class AcSystemsServiceImpl implements AcSystemsService {
         acSystemsRepository.updateNotificationsStatus(id, enabled)
                 .ifPresentOrElse(this::scheduleEmail, () -> { throw new MyException(ErrorCode.SYSTEM_NOT_EXISTS); });
     }
+
+    //************************************************SystemDetail********************************************************//
+
+    @Override
+    public AcDetail updateDetail(AcDetail acDetail) {
+        String key = CACHE_DETAIL + acDetail.getId();
+        redisUtil.setObject(key, acDetail);
+        return acDetail;
+    }
+
+    @Override
+    public AcDetail getDetail(Long id) {
+        String key = CACHE_DETAIL + id;
+        AcDetail acDetail = (AcDetail) redisUtil.getObject(key);
+        if(acDetail == null) {
+            //防止缓存穿透情况
+            if(redisUtil.exists(key)){
+                return null;
+            }
+            acDetail = acDetailRepository.findByid(id);
+            redisUtil.setObject(key, acDetail);
+        }
+        return acDetail;
+    }
+
+    //************************************************Private********************************************************//
 
     private void scheduleEmail(JobDetails jobDetails) {
         LocalDateTime date = jobDetails.getNextMaintainance();

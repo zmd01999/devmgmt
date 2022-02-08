@@ -81,4 +81,14 @@ public class AcSystemsServiceController {
     public void setNotifications(@PathVariable @Min(1) Long id, @RequestParam boolean enabled) {
         service.setNotifications(id, enabled);
     }
+
+    @PostMapping(value = "/detail/update")
+    public VResponse<AcDetail> updateDetail(@RequestBody AcDetail acDetail) {
+        return VResponse.success(service.updateDetail(acDetail));
+    }
+
+    @GetMapping(value = "/detail/{id}/get")
+    public VResponse<AcDetail> getDetail(@PathVariable @Min(1) Long id) {
+        return VResponse.success(service.getDetail(id));
+    }
 }

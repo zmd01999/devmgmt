@@ -28,6 +28,9 @@ public class AcDetail {
 
     private int presetMode;
 
+    public AcDetail(){
+
+    }
     public AcDetail(Long systemId){
         this.systemId = systemId;
         this.fanH = false;

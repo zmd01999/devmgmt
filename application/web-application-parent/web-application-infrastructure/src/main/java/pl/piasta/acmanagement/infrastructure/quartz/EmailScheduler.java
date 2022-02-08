@@ -1,4 +1,4 @@
-package pl.piasta.acmanagement.domain.acsystems.quartz;
+package pl.piasta.acmanagement.infrastructure.quartz;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

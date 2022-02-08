@@ -1,5 +1,6 @@
 package pl.piasta.acmanagement.api.service;
 
+import pl.piasta.acmanagement.domain.acsystems.model.AcDetail;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystem;
 import pl.piasta.acmanagement.domain.acsystems.model.AcSystemFull;
 
@@ -14,4 +15,6 @@ public interface AcSystemsService {
     List<AcSystem> getAllSystems();
     void setNextMaintainance(Long id, LocalDateTime date);
     void setNotifications(Long id, boolean enabled);
+    AcDetail updateDetail(AcDetail acDetail);
+    AcDetail getDetail(Long id);
 }

@@ -9,6 +9,8 @@ import pl.piasta.acmanagement.domain.acsystems.model.AcDetail;
 import pl.piasta.acmanagement.infrastructure.dao.AcDetailDao;
 import pl.piasta.acmanagement.infrastructure.model.AcDetailEntity;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 public class AcDetailRepositorylmpl implements AcDetailRepository {
@@ -22,5 +24,14 @@ public class AcDetailRepositorylmpl implements AcDetailRepository {
         AcDetailEntity acDetailEntity = new AcDetailEntity();
         BeanUtils.copyProperties(acDetail, acDetailEntity);
         return acDetailDao.save(acDetailEntity).getId();
+    }
+
+    @Override
+    public AcDetail findByid(Long id) {
+        AcDetailEntity acDetailEntity = acDetailDao.findById(id).orElse(null);
+        AcDetail acDetail = new AcDetail();
+        if(acDetailEntity != null)
+        BeanUtils.copyProperties(acDetailEntity, acDetail);
+        return acDetail;
     }
 }

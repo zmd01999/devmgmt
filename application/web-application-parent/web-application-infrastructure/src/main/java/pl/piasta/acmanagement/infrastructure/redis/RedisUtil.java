@@ -27,7 +27,7 @@ public class RedisUtil {
         stringValueOperations.set(key, value);
     }
 
-    public void save(String key, Object obj){
+    public void setObject(String key, Object obj){
         objValueOperations.set(key, obj);
     }
 
@@ -39,5 +39,13 @@ public class RedisUtil {
         return objValueOperations.get(key);
     }
 
+    /**
+     * 查询key是否存在
+     * @param key
+     * @return
+     */
+    public boolean exists(String key) {
+        return Boolean.TRUE.equals(redisTemplate.hasKey(key));
+    }
 
 }

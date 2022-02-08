@@ -1,4 +1,4 @@
-package pl.piasta.acmanagement.domain.acsystems.quartz;
+package pl.piasta.acmanagement.infrastructure.quartz;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
