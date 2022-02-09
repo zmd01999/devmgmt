@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 
 import javax.annotation.Resource;
+import java.util.Set;
 
 @Component
 public class RedisUtil {
@@ -39,6 +40,9 @@ public class RedisUtil {
         return objValueOperations.get(key);
     }
 
+    public Set<String> getAllObject(String fuzzyKey) {
+        return stringRedisTemplate.keys(fuzzyKey);
+    }
     /**
      * 查询key是否存在
      * @param key
