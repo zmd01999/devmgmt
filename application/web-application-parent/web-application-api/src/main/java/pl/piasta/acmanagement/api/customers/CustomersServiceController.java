@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pl.piasta.acmanagement.api.common.VResponse;
 import pl.piasta.acmanagement.api.mapper.CustomerMapper;
-import pl.piasta.acmanagement.api.misc.ResourceCreatedResponse;
 
 import pl.piasta.acmanagement.domain.customers.model.Customer;
 import pl.piasta.acmanagement.dto.customers.CustomerResponse;

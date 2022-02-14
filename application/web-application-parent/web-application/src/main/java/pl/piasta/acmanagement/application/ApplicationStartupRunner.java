@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.piasta.acmanagement.infrastructure.quartz.SynDataScheduler;
 
+
 @Component
 public class ApplicationStartupRunner implements CommandLineRunner {
     protected final Log logger = LogFactory.getLog(getClass());
