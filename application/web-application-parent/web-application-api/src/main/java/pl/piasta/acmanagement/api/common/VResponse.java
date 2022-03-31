@@ -1,14 +1,14 @@
 package pl.piasta.acmanagement.api.common;
 
 public class VResponse<T> {
-    private int code = 1;
+    private int code = 200;
     private String msg = "";
     private int count = 1;
     private String time = "";
     private T data;
 
     //通用错误码
-    public static final int SUCCESS = 1;
+    public static final int SUCCESS = 200;
     public static final String TIME ="1588485027829";
 
     public VResponse(int errCode, String errMsg, int errCount, String time) {

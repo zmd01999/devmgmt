@@ -18,12 +18,14 @@ public class UserDetail implements UserDetails {
     private long id;
     private String username;
     private String password;
+    private String nikename;
     private Role role;
     private Date lastPasswordResetDate;
 
     public UserDetail(
             long id,
             String username,
+            String nikename,
             Role role,
 //            Date lastPasswordResetDate,
         String password) {
@@ -31,7 +33,19 @@ public class UserDetail implements UserDetails {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.nikename = nikename;
 //        this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+    public UserDetail(
+            long id,
+            String username,
+            Role role,
+            String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
     public UserDetail(String username, String password, Role role) {
@@ -125,4 +139,13 @@ public class UserDetail implements UserDetails {
     public void setLastPasswordResetDate(Date lastPasswordResetDate) {
         this.lastPasswordResetDate = lastPasswordResetDate;
     }
+
+    public String getNikename() {
+        return nikename;
+    }
+
+    public void setNikename(String nikename) {
+        this.nikename = nikename;
+    }
+
 }
