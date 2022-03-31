@@ -23,6 +23,7 @@ public class AuthEntityMapper {
         return new UserDetail(
                 sysUserEntity.getId(),
                 sysUserEntity.getUserName(),
+                sysUserEntity.getNikeName(),
                 role,
                 sysUserEntity.getPassWord()
         );
