@@ -20,7 +20,7 @@ public class SysUserRoleEntity {
     private Long id;
 
     @Column(name = "USERID", length = 20)
-    private Long userId;
+    private String userId;
 
     @Column(name = "ROLEID", length = 20)
     private Long roleId;

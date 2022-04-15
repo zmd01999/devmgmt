@@ -1,15 +1,18 @@
 package pl.piasta.acmanagement.infrastructure.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import pl.piasta.acmanagement.infrastructure.model.SysRoleEntity;
+import org.springframework.transaction.annotation.Transactional;
 import pl.piasta.acmanagement.infrastructure.model.SysUserRoleEntity;
 
 public interface SysUserRoleDao extends JpaRepository<SysUserRoleEntity, Long> {
 
-    @Query(value = "insert into sys_user_role (user_id, role_id) VALUES (?1, ?2)", nativeQuery = true)
-    void insertUserRole(Long userId, Long roleId);
+    @Transactional
+    @Modifying
+    @Query(value = "insert into sys_user_role (userid, roleid) VALUES (?1, ?2)", nativeQuery = true)
+    void insertUserRole(String userId, Long roleId);
 
-    SysUserRoleEntity findByUserId(Long userId);
+    SysUserRoleEntity findByuserId(String userId);
 
 }

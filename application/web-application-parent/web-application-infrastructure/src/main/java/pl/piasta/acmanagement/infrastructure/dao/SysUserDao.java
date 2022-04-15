@@ -1,16 +1,18 @@
 package pl.piasta.acmanagement.infrastructure.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import pl.piasta.acmanagement.domain.admin.model.UserDetail;
-import pl.piasta.acmanagement.infrastructure.model.SysRoleEntity;
+
+import org.springframework.transaction.annotation.Transactional;
 import pl.piasta.acmanagement.infrastructure.model.SysUserEntity;
 
-import java.util.Optional;
 
 public interface SysUserDao extends JpaRepository<SysUserEntity, Long> {
     SysUserEntity findByUserName(String userName);
 
-    @Query(value = "insert into sys_user (name, password) VALUES (?1, ?2)", nativeQuery = true)
-    void insertUser(String userName, String password);
+    @Transactional
+    @Modifying
+    @Query(value = "insert into sys_user (username, password, nikename) VALUES (?1, ?2, ?3)", nativeQuery = true)
+    void insertUser(String userName, String password, String nikename);
 }

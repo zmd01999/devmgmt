@@ -26,7 +26,7 @@ public interface AuthRepository {
      * @param roleId
      * @return
      */
-    void insertRole(long userId, long roleId);
+    void insertRole(String userId, long roleId);
 
     /**
      * 根据角色id查找角色

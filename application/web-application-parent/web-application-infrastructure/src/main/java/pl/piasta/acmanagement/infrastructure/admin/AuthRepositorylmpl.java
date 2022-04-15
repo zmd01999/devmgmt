@@ -22,18 +22,23 @@ public class AuthRepositorylmpl implements AuthRepository {
     @Override
     public UserDetail findByUsername(String name) {
         SysUserEntity sysUserEntity = sysUserDao.findByUserName(name);
-        Long roleId = sysUserRoleDao.findByUserId(sysUserEntity.getId()).getRoleId();
-        Role role = mapper.mapToRole(sysRoleDao.findById(roleId)).orElse(null);
-        return mapper.mapToUserDetail(sysUserEntity, role);
+        if (sysUserEntity == null) {
+            return null;
+        } else {
+            Long roleId = sysUserRoleDao.findByuserId(sysUserEntity.getUserName()).getRoleId();
+            Role role = mapper.mapToRole(sysRoleDao.findById(roleId)).orElse(null);
+            return mapper.mapToUserDetail(sysUserEntity, role);
+        }
+
     }
 
     @Override
     public void insert(UserDetail userDetail) {
-        sysUserDao.insertUser(userDetail.getUsername(), userDetail.getPassword());
+        sysUserDao.insertUser(userDetail.getUsername(), userDetail.getPassword(), "木风");
     }
 
     @Override
-    public void insertRole(long userId, long roleId) {
+    public void insertRole(String userId, long roleId) {
          sysUserRoleDao.insertUserRole(userId, roleId);
     }
 

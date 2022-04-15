@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.piasta.acmanagement.infrastructure.admin.AuthRepository;
 import pl.piasta.acmanagement.api.service.AuthService;
 import pl.piasta.acmanagement.domain.admin.model.ResponseUserToken;
@@ -48,6 +49,7 @@ public class AuthServiceImpl implements AuthService {
         this.authRepository = authRepository;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public UserDetail register(UserDetail userDetail) {
         final String username = userDetail.getUsername();
@@ -62,7 +64,7 @@ public class AuthServiceImpl implements AuthService {
         long roleId = userDetail.getRole().getId();
         Role role = authRepository.findRoleById(roleId);
         userDetail.setRole(role);
-        authRepository.insertRole(userDetail.getId(), roleId);
+        authRepository.insertRole(userDetail.getUsername(), roleId);
         return userDetail;
     }
 

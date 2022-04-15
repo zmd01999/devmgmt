@@ -44,7 +44,7 @@ public class AuthController {
     }
 
     @GetMapping(value = "/logout")
-    public VResponse logout(HttpServletRequest request){
+    public VResponse<UserDetail> logout(HttpServletRequest request){
         String token = request.getHeader(tokenHeader);
         if (token == null) {
             return VResponse.error(ResultCode.UNAUTHORIZED.getCode(), "登出成功");
@@ -54,7 +54,7 @@ public class AuthController {
     }
 
     @GetMapping(value = "/user")
-    public VResponse getUser(HttpServletRequest request){
+    public VResponse<UserDetail> getUser(HttpServletRequest request){
         String token = request.getHeader(tokenHeader);
         if (token == null) {
             return VResponse.error(ResultCode.UNAUTHORIZED.getCode(), "获取用户信息成功");
@@ -64,11 +64,11 @@ public class AuthController {
     }
 
     @PostMapping(value = "/register")
-    public VResponse sign(@RequestBody User user) {
+    public VResponse<UserDetail> sign(@RequestBody User user) {
         if (StringUtils.isAnyBlank(user.getName(), user.getPassword())) {
             return VResponse.error(ResultCode.BAD_REQUEST.getCode(), "BAD_REQUEST");
         }
-        UserDetail userDetail = new UserDetail(user.getName(), user.getPassword(), Role.builder().id(1l).build());
+        UserDetail userDetail = new UserDetail(user.getName(), user.getPassword(), Role.builder().id(1L).build());
         return VResponse.success(authService.register(userDetail));
     }
 //    @GetMapping(value = "refresh")
