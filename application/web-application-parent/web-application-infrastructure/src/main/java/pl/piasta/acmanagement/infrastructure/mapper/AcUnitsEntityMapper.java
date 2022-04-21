@@ -1,8 +1,10 @@
 package pl.piasta.acmanagement.infrastructure.mapper;
 
 import org.springframework.stereotype.Component;
+import pl.piasta.acmanagement.domain.acunits.model.EnergyConsum;
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
 import pl.piasta.acmanagement.infrastructure.model.AcUnitsEntity;
+import pl.piasta.acmanagement.infrastructure.model.EnergyConsumEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +24,13 @@ public class AcUnitsEntityMapper {
                 .collect(Collectors.toList());
     }
 
+    public List<EnergyConsum> mapToEnergyCList(List<EnergyConsumEntity> energyConsumEntityList) {
+        return energyConsumEntityList
+                .stream()
+                .map(this::mapToEnergy)
+                .collect(Collectors.toList());
+    }
+
     public AcUnit mapToAcUnit(AcUnitsEntity acUnitsEntity) {
         return new AcUnit(
                 acUnitsEntity.getId(),
@@ -29,5 +38,15 @@ public class AcUnitsEntityMapper {
                 acUnitsEntity.getProductName(),
                 acUnitsEntity.getVoltage(),
                 acUnitsEntity.getCurrent());
+    }
+
+    public EnergyConsum mapToEnergy(EnergyConsumEntity energyConsumEntity) {
+        return new EnergyConsum(
+                energyConsumEntity.getId(),
+                energyConsumEntity.getScene(),
+                energyConsumEntity.getSeam(),
+                energyConsumEntity.getProduct(),
+                energyConsumEntity.getPowerConsum(),
+                energyConsumEntity.getDate());
     }
 }
