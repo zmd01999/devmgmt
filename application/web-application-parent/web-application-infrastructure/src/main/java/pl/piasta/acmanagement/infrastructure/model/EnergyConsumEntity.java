@@ -34,10 +34,17 @@ public class EnergyConsumEntity {
     private String product;
 
     @Column(name = "POWER_CONSUM", nullable = false, length = 30)
-    private int powerConsum;
+    private double powerConsum;
+
+    @Column(name = "SMART_CONSUM", nullable = false, length = 30)
+    private double smartConsum;
+
+    @Column(name = "TRAD_CONSUM", nullable = false, length = 30)
+    private double tradConsum;
 
     @Column(name = "DATE", nullable = false, length = 50)
     private Date date;
+
 
 
 }

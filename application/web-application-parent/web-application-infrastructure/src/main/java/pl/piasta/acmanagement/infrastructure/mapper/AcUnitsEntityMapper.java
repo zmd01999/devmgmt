@@ -47,6 +47,8 @@ public class AcUnitsEntityMapper {
                 energyConsumEntity.getSeam(),
                 energyConsumEntity.getProduct(),
                 energyConsumEntity.getPowerConsum(),
+                energyConsumEntity.getSmartConsum(),
+                energyConsumEntity.getTradConsum(),
                 energyConsumEntity.getDate());
     }
 }

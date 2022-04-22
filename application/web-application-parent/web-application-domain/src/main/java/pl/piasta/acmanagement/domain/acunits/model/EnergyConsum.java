@@ -19,7 +19,11 @@ public class EnergyConsum {
 
     private String product;
 
-    private Integer powerConsum;
+    private double powerConsum;
+
+    private double smartConsum;
+
+    private double tradConsum;
 
     private Date date;
 

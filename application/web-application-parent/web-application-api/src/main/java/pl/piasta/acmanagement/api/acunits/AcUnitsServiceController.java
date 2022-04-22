@@ -20,6 +20,7 @@ import pl.piasta.acmanagement.api.misc.JsonPatchHandler;
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
 import pl.piasta.acmanagement.domain.acunits.model.EnergyConsum;
 import pl.piasta.acmanagement.dto.acunits.AcUnitResponse;
+import pl.piasta.acmanagement.dto.acunits.EnergyAdvResponse;
 import pl.piasta.acmanagement.dto.acunits.UpdateUnitRequest;
 import pl.piasta.acmanagement.api.service.AcUnitsService;
 
@@ -78,5 +79,14 @@ public class AcUnitsServiceController {
         Date ebdFmt = sdf.parse( end );
         List<EnergyConsum> consumList = service.getEnergyConsum(startFmt, ebdFmt);
         return VResponse.success(consumList);
+    }
+
+    @GetMapping(value = "/comparison",produces = MediaType.APPLICATION_JSON_VALUE)
+    public VResponse<List<EnergyAdvResponse>> getComparison(String start, String end) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+        Date startFmt = sdf.parse( start );
+        Date ebdFmt = sdf.parse( end );
+        List<EnergyConsum> consumList = service.getEnergyConsum(startFmt, ebdFmt);
+        return VResponse.success(mapper.mapToEnergyAdv(consumList));
     }
 }
