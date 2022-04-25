@@ -4,12 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import pl.piasta.acmanagement.domain.acunits.model.Devices;
 import pl.piasta.acmanagement.domain.acunits.model.EnergyConsum;
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
 import pl.piasta.acmanagement.infrastructure.dao.AcUnitsDao;
+import pl.piasta.acmanagement.infrastructure.dao.DevicesDao;
 import pl.piasta.acmanagement.infrastructure.dao.EnergyConsumDao;
 import pl.piasta.acmanagement.infrastructure.mapper.AcUnitsEntityMapper;
 import pl.piasta.acmanagement.infrastructure.model.AcUnitsEntity;
+import pl.piasta.acmanagement.infrastructure.model.DeviceEntity;
 import pl.piasta.acmanagement.infrastructure.model.EnergyConsumEntity;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -27,6 +30,7 @@ public class AcUnitsRepositoryImpl implements AcUnitsRepository {
 
     private final AcUnitsDao acUnitsDao;
     private final EnergyConsumDao energyConsumDao;
+    private final DevicesDao devicesDao;
     private final AcUnitsEntityMapper mapper;
 
     @Override
@@ -74,6 +78,24 @@ public class AcUnitsRepositoryImpl implements AcUnitsRepository {
         };
         return mapper.mapToEnergyCList(energyConsumDao.findAll(specification));//没有数据时，返回空列表
 
+    }
+
+    @Override
+    public List<Devices> getDevices(String User, String type) {
+        Specification<DeviceEntity> specification = (Specification<DeviceEntity>) (root, query, cb) -> {
+            List<Predicate> predicateList = new ArrayList<>();
+            //条件1：EnergyConsumEntity 运行日期（date）大于等于 start 的数据，root.get 中的 date 必须对应 EnergyConsumEntity 中的属性
+            predicateList.add(cb.equal(root.get("userName").as(Date.class), User));
+
+            //条件2：EnergyConsumEntity 运行日期（date）小于等于 end
+            predicateList.add(cb.equal(root.get("type").as(Date.class), type));
+
+            Predicate[] pre = new Predicate[predicateList.size()];
+            pre = predicateList.toArray(pre);
+            return query.where(pre).getRestriction();
+
+        };
+        return mapper.mapToDevicesList(devicesDao.findAll(specification));
     }
 
 

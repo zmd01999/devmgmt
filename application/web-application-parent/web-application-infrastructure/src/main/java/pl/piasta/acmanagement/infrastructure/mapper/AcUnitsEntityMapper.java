@@ -1,9 +1,11 @@
 package pl.piasta.acmanagement.infrastructure.mapper;
 
 import org.springframework.stereotype.Component;
+import pl.piasta.acmanagement.domain.acunits.model.Devices;
 import pl.piasta.acmanagement.domain.acunits.model.EnergyConsum;
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
 import pl.piasta.acmanagement.infrastructure.model.AcUnitsEntity;
+import pl.piasta.acmanagement.infrastructure.model.DeviceEntity;
 import pl.piasta.acmanagement.infrastructure.model.EnergyConsumEntity;
 
 import java.util.List;
@@ -31,6 +33,13 @@ public class AcUnitsEntityMapper {
                 .collect(Collectors.toList());
     }
 
+    public List<Devices> mapToDevicesList(List<DeviceEntity> deviceEntities) {
+        return deviceEntities
+                .stream()
+                .map(this::mapToDevice)
+                .collect(Collectors.toList());
+    }
+
     public AcUnit mapToAcUnit(AcUnitsEntity acUnitsEntity) {
         return new AcUnit(
                 acUnitsEntity.getId(),
@@ -50,5 +59,15 @@ public class AcUnitsEntityMapper {
                 energyConsumEntity.getSmartConsum(),
                 energyConsumEntity.getTradConsum(),
                 energyConsumEntity.getDate());
+    }
+
+    public Devices mapToDevice(DeviceEntity deviceEntity) {
+        return new Devices(
+                deviceEntity.getId(),
+                deviceEntity.getType(),
+                deviceEntity.getUserName(),
+                deviceEntity.getNikeName(),
+                deviceEntity.getStatus());
+
     }
 }

@@ -1,5 +1,6 @@
 package pl.piasta.acmanagement.infrastructure.acunits;
 
+import pl.piasta.acmanagement.domain.acunits.model.Devices;
 import pl.piasta.acmanagement.domain.acunits.model.EnergyConsum;
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
 
@@ -15,4 +16,6 @@ public interface AcUnitsRepository {
     List<AcUnit> getAll();
 
     List<EnergyConsum> getConsum(Date start, Date end);
+
+     List<Devices> getDevices(String User, String type);
 }

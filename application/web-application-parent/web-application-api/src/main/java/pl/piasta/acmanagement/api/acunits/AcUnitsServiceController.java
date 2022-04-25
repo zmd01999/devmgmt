@@ -18,6 +18,7 @@ import pl.piasta.acmanagement.api.mapper.AcUnitMapper;
 import pl.piasta.acmanagement.api.misc.JsonPatchHandler;
 
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
+import pl.piasta.acmanagement.domain.acunits.model.Devices;
 import pl.piasta.acmanagement.domain.acunits.model.EnergyConsum;
 import pl.piasta.acmanagement.dto.acunits.AcUnitResponse;
 import pl.piasta.acmanagement.dto.acunits.EnergyAdvResponse;
@@ -88,5 +89,11 @@ public class AcUnitsServiceController {
         Date ebdFmt = sdf.parse( end );
         List<EnergyConsum> consumList = service.getEnergyConsum(startFmt, ebdFmt);
         return VResponse.success(mapper.mapToEnergyAdv(consumList));
+    }
+
+    @GetMapping(value = "/devices",produces = MediaType.APPLICATION_JSON_VALUE)
+    public VResponse<List<Devices>> getDevices(String User, String type) {
+        List<Devices> devicesList = service.getDevices(User, type);
+        return VResponse.success(devicesList);
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.piasta.acmanagement.api.misc.MyException;
 import pl.piasta.acmanagement.api.service.AcUnitsService;
+import pl.piasta.acmanagement.domain.acunits.model.Devices;
 import pl.piasta.acmanagement.domain.acunits.model.EnergyConsum;
 import pl.piasta.acmanagement.infrastructure.acunits.AcUnitsRepository;
 import pl.piasta.acmanagement.domain.acunits.model.AcUnit;
@@ -43,5 +44,10 @@ public class AcUnitsServiceImpl implements AcUnitsService {
     @Override
     public List<EnergyConsum> getEnergyConsum(Date start, Date end) {
         return acUnitsRepository.getConsum(start,end);
+    }
+
+    @Override
+    public List<Devices> getDevices(String user, String type) {
+        return acUnitsRepository.getDevices(user, type);
     }
 }
