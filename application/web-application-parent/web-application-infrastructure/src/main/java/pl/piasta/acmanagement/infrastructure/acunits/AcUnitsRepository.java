@@ -18,4 +18,7 @@ public interface AcUnitsRepository {
     List<EnergyConsum> getConsum(Date start, Date end);
 
      List<Devices> getDevices(String User, String type);
+
+    Long addDevice(Devices devices);
+
 }

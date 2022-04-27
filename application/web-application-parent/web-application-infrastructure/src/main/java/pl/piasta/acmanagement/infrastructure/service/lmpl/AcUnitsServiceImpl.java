@@ -50,4 +50,11 @@ public class AcUnitsServiceImpl implements AcUnitsService {
     public List<Devices> getDevices(String user, String type) {
         return acUnitsRepository.getDevices(user, type);
     }
+
+    @Override
+    @Transactional
+    public Devices updateDevice(Devices devices) {
+        acUnitsRepository.addDevice(devices);
+        return devices;
+    }
 }

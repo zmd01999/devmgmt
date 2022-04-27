@@ -17,4 +17,5 @@ public interface AcUnitsService {
     List<EnergyConsum> getEnergyConsum(Date start, Date end);
 
     List<Devices> getDevices(String user, String type);
+    Devices updateDevice(Devices devices);
 }
